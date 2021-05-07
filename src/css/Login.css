@@ -1,0 +1,35 @@
+.login{
+	background-color: white;
+	place-items: center;
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+}
+.login_container{
+	padding: 100px;
+	text-align: center;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 1px  3px rgba(0, 0, 0, 0.12), 0 1px;
+}
+.login_container > img{
+	object-fit: contain;
+	height: 150px;
+	margin-bottom: 40px;
+}
+.login_text > button{
+	margin-top: 30px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: #999b84;
+	color: white;
+	font-family: "Gill Sans", sans-serif;
+	border: none;
+}
+.login_text > h2{
+	font-family: cursive;
+}
+button:hover {
+	background-color: #4285F4;
+	cursor: pointer;
+}
