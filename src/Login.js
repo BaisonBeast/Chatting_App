@@ -1,14 +1,21 @@
 import React from 'react'
 import "./css/Login.css"
 import {auth, provider} from "./firebase"
+import {useStateValue} from "./StateProvider";
+import {actionTypes} from "./Reducer";
 
 function Login() {
-
+	const [{}, dispatch] = useStateValue();
 	
-		const signIn= ()=>auth
-		.signInWithPopup(provider)
-		.then((result)=>console.log(result))
-		.catch((error)=>alert(error.message));
+	const signIn= ()=>auth
+	.signInWithPopup(provider)
+	.then((result)=>{
+		dispatch({
+			type: actionTypes.SET_USER,
+			user:result.user,
+		})
+	})
+	.catch((error)=>alert(error.message));
 	
 
 	return (

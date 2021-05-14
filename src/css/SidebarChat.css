@@ -9,8 +9,19 @@
 }
 .sidebarChat_info{
 	margin-left: 15px;
+	text-decoration: none !important;
+}
+a{
+	text-decoration: none !important;
+	color: black;
+	font-family: "Gill Sans", sans-serif;
 }
 .sidebarChat_info > h2{
-	font-size: 16px;
+	font-size: 18px;
 	margin-bottom: 5px;
+	color: black;
+}
+.sidebarChat_info > h3{
+	font-size: 13px;
+	color: #393e46;
 }

@@ -7,11 +7,13 @@ import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import db from "./firebase";
+import {useStateValue} from "./StateProvider";
 
 function Sidebar() {
 
      {/* Array for storing the local data */}
 	const [rooms, setRooms] = useState([]);
+	const [{user}, dispatch] = useStateValue();
 
 	{/* onSnapshot is for taking the data everytime we add or delete and updates the room*/}
 	useEffect(() => {
@@ -42,7 +44,7 @@ function Sidebar() {
 				 {/* IconButton for clickable effect */}
 				<IconButton>
 				{/* Material ui components Avatar, DonutLargeIcon, ChatIcon, MoreVertIcon */}
-				<Avatar />
+				<Avatar src={user?.photoURL}/>
 				</IconButton>
 				<div className="sidebar_header_right">
 					<IconButton>
