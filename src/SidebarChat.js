@@ -23,7 +23,7 @@ function SidebarChat({id, name, addNewChat}) {
 					doc.data()))
 				);
 		}
-		
+
 	}, [id])
 
 	function createChat(){
@@ -36,6 +36,10 @@ function SidebarChat({id, name, addNewChat}) {
 		}
 	}
 
+	function deleteItem(){
+		db.collection("rooms").doc(id).delete();
+	}
+
 	return !addNewChat? (
 		<Link to={`/rooms/${id}`}>
 			<div className="sidebarChat">
@@ -44,12 +48,13 @@ function SidebarChat({id, name, addNewChat}) {
 					<h2>{name}</h2>
 					<h3>{messages[0]?.message}</h3>
 				</div>
+				<a href="#" class="myButton" onClick={deleteItem}>Delete</a>
 			</div>
 		</Link>
 	) : (
 		<div className="sidebarChat" onClick={createChat}>
 			<h2>Add New Chat</h2>
-			
+
 		</div>
 
 	)

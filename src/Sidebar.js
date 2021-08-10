@@ -11,11 +11,11 @@ import {useStateValue} from "./StateProvider";
 
 function Sidebar() {
 
-     {/* Array for storing the local data */}
+/* Array for storing the local data */
 	const [rooms, setRooms] = useState([]);
 	const [{user}, dispatch] = useStateValue();
 
-	{/* onSnapshot is for taking the data everytime we add or delete and updates the room*/}
+/* onSnapshot is for taking the data everytime we add or delete and updates the room*/
 	useEffect(() => {
 			db.collection('rooms').onSnapshot((snapshot)=>
 				setRooms(
@@ -25,9 +25,10 @@ function Sidebar() {
 				}))
 			  )
 			);
-		
+
 	}, []);
 
+/* Render all the chatSidebar */
 	function renderItems(room){
 		return <SidebarChat
 					id={room.id}
@@ -35,7 +36,16 @@ function Sidebar() {
 					name={room.data.name}
 				/>
 	}
-
+/* Creating a new chatSidebar  */
+  function createChat(){
+		const roomName=prompt("Enter the name ")
+		if(roomName)
+		{
+			db.collection("rooms").add({
+				name: roomName
+			})
+		}
+	}
 
 	return (
 		<div className="sidebar">
@@ -48,13 +58,13 @@ function Sidebar() {
 				</IconButton>
 				<div className="sidebar_header_right">
 					<IconButton>
-					<DonutLargeIcon />
+    				<DonutLargeIcon />
+    			</IconButton>
+  				<IconButton  onClick={createChat}>
+  					<ChatIcon />
 					</IconButton>
 					<IconButton>
-					<ChatIcon />
-					</IconButton>
-					<IconButton>
-					<MoreVertIcon />
+					  <MoreVertIcon />
 					</IconButton>
 			</div>
 				</div>
@@ -67,7 +77,7 @@ function Sidebar() {
 				</div>
 			</div>
 
-
+{/* Map through all the sidebar_chats */}
 			<div className="sidebar_chats">
 				<SidebarChat addNewChat/>
 				{rooms.map(renderItems)}

@@ -10,17 +10,21 @@
 	border-bottom: 1px solid lightgrey;
 	align-items: center;
 }
+
 .chat_header_info{
 	padding: 10px 15px 5px 30px;
 	flex: 1;
 }
+
 .chat_header_info > h3{
 	font-weight: 500;
 	font-size: 15px;
 }
+
 .chat_header_info > p{
 	color: grey;
 }
+
 .chat_header_right{
 	display: flex;
 	justify-content: space-between;
@@ -35,6 +39,7 @@
 	overflow: auto;
 	padding: 30px
 }
+
 .chat_message{
 	position: relative;
 	margin-bottom: 25px;
@@ -44,16 +49,19 @@
 	font-size: 16px;
 	border-radius: 15px;
 }
+
 .chat_reveiver{
 	margin-left: auto;
 	background-color: #c6ffc1
 }
+
 .chat_name{
 	position: absolute;
 	font-size: xx-small;
 	font-weight: 800;
 	top: -15px;
 }
+
 .chat_timestamp{
 	font-size: xx-small;
 	margin-left: 5px;
@@ -66,14 +74,24 @@
 	height: 60px;
 	border-top: 1px solid lightgrey;
 }
+
 .chat_footer > form{
 	display: flex;
 	flex: 1;
 }
+
 .chat_footer > form > input{
 	flex: 1;
 	border-radius: 10px;
 	padding: 8px;
 	border: none;
 	margin-right: 10px;
+}
+
+.chat_footer >form > button{
+	display: none;
+}
+
+.Enterlogo{
+	cursor: pointer;
 }
