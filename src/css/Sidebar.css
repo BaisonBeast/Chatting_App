@@ -3,6 +3,12 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.sidebarChat{
+	display: flex;
+	align-items: center
+}
+
 .sidebar_header{
 	display: flex;
 	justify-content: space-between;
@@ -10,6 +16,7 @@
 	border-right: 1px solid lightblue;
 	height: 8vh;
 }
+
 .sidebar_header_right{
 	display: flex;
 	align-items: center;
@@ -25,6 +32,7 @@
 	height: 39px;
 	padding: 10px;
 }
+
 .sidebar_search_container{
 	display: flex;
 	align-items: center;
@@ -33,15 +41,38 @@
 	height: 30px;
 	border-radius: 20px;
 }
+
 .sidebar_search_container > input{
 	border: none;
 	margin: 10px;
 }
+
 .sidebar_search_container > .MuiSvgIcon-root{
 	margin: 10px;
 }
 
+.myButton {
+	background-color:#44c767;
+	border-radius:12px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:16px;
+	padding:6px 11px;
+	text-decoration:none;
+	text-shadow:-1px 1px 0px #2f6627;
+	margin-left: auto;
+}
 
+.myButton:hover {
+	background-color:#5cbf2a;
+}
+
+.myButton:active {
+	position:relative;
+	top:1px;
+}
 
 .sidebar_chats{
 	background-color: white;

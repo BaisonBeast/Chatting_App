@@ -27,7 +27,7 @@ function Chat() {
 	useEffect(() =>{
 		if(roomid){
 			db.collection("rooms").doc(roomid)
-			.onSnapshot((snapshot)=>setRoomName(snapshot.data().name));
+			.onSnapshot((snapshot)=>setRoomName(snapshot.data()?.name));
 
 
 			db.collection("rooms")
@@ -45,16 +45,16 @@ function Chat() {
 
 	function handleClick(event){
 		event.preventDefault();
-		console.log(inputVal)
-		
-		db.collection("rooms").doc(roomid).collection
-		('messages').add({
-			message: inputVal,
-			name: user.displayName,
-			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-		});
+		if(inputVal!=""){
+			db.collection("rooms").doc(roomid).collection
+			('messages').add({
+				message: inputVal,
+				name: user.displayName,
+				timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+			});
 
-		setinputVal("");
+			setinputVal("");
+		}
 	}
 
 	function handleChange(event){
@@ -66,7 +66,7 @@ function Chat() {
 		<div className="chat">
 			<div className="chat_header">
 				<Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
-				
+
 				<div className="chat_header_info">
 					<h3>{roomName}</h3>
 					<p>Last seen ...</p>
@@ -87,14 +87,14 @@ function Chat() {
 
 			<div className="chat_area">
 				{messages.map(message=>(
-					<p className={`chat_message ${message.name=== user.displayName && 
+					<p className={`chat_message ${message.name=== user.displayName &&
 											"chat_reveiver" }`}>
 					<span className="chat_name">{message.name}</span>
 						{message.message}
 				<span className="chat_timestamp">{new Date(message.timestamp?.toDate()).toUTCString()}</span>
 				</p>
 					))}
-				
+
 			</div>
 
 			<div className="chat_footer">
@@ -103,7 +103,8 @@ function Chat() {
 				</IconButton>
 				<form>
 					<input placeholder="Type in a message" value={inputVal} onChange={handleChange} type="text" />
-					<SendIcon type="submit" onClick={handleClick} />
+					<button type="submit" onClick={handleClick}></button>
+					<SendIcon className="Enterlogo" onClick={handleClick} />
 				</form>
 				<IconButton>
 				<MicIcon />
