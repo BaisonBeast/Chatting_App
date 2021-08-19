@@ -9,7 +9,6 @@ function SidebarChat({id, name, addNewChat}) {
 	const [seed, setSeed] = useState("");
 	const [messages, setMessages]= useState("")
 
-
 	useEffect(() => {
 		setSeed(Math.floor(Math.random()*1000));
 	}, [])
@@ -17,24 +16,14 @@ function SidebarChat({id, name, addNewChat}) {
 	useEffect(() => {
 		if(id){
 			db.collection("rooms").doc(id).collection("messages")
-			.orderBy("timestamp", "desc").
-			onSnapshot((snapshot)=>
+			.orderBy("timestamp", "desc")
+			.onSnapshot((snapshot)=>
 				setMessages(snapshot.docs.map((doc)=>
 					doc.data()))
 				);
 		}
 
 	}, [id])
-
-	function createChat(){
-		const roomName=prompt("Enter the name ")
-		if(roomName)
-		{
-			db.collection("rooms").add({
-				name: roomName
-			})
-		}
-	}
 
 	function deleteItem(){
 		db.collection("rooms").doc(id).delete();
@@ -52,11 +41,7 @@ function SidebarChat({id, name, addNewChat}) {
 			</div>
 		</Link>
 	) : (
-		<div className="sidebarChat" onClick={createChat}>
-			<h2>Add New Chat</h2>
-
-		</div>
-
+		null
 	)
 }
 

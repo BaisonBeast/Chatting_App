@@ -73,7 +73,7 @@ function Sidebar() {
 			<div className="sidebar_search">
 				<div className="sidebar_search_container">
 					<SearchIcon />
-				<input type="text" placeholder="This" />
+				<input type="text" placeholder="Search" />
 				</div>
 			</div>
 

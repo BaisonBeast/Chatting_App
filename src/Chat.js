@@ -11,6 +11,7 @@ import {useParams} from "react-router-dom";
 import {useStateValue} from "./StateProvider";
 import firebase from "firebase";
 import db from "./firebase";
+import {seed} from "./SidebarChat";
 
 function Chat() {
 	const [seed, setSeed] = useState("");
@@ -45,7 +46,7 @@ function Chat() {
 
 	function handleClick(event){
 		event.preventDefault();
-		if(inputVal!=""){
+		if(inputVal!==""){
 			db.collection("rooms").doc(roomid).collection
 			('messages').add({
 				message: inputVal,
