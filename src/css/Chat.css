@@ -6,6 +6,7 @@
 
 .chat_header{
 	padding: 10px;
+	background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 	display: flex;
 	border-bottom: 1px solid lightgrey;
 	align-items: center;
