@@ -14,6 +14,7 @@ function Sidebar() {
 /* Array for storing the local data */
 	const [rooms, setRooms] = useState([]);
 	const [{user}, dispatch] = useStateValue();
+	const [Name, setName]= useState("");
 
 /* onSnapshot is for taking the data everytime we add or delete and updates the room*/
 	useEffect(() => {
@@ -28,14 +29,6 @@ function Sidebar() {
 
 	}, []);
 
-/* Render all the chatSidebar */
-	function renderItems(room){
-		return <SidebarChat
-					id={room.id}
-					key={room.id}
-					name={room.data.name}
-				/>
-	}
 /* Creating a new chatSidebar  */
   function createChat(){
 		const roomName=prompt("Enter the name ")
@@ -45,6 +38,7 @@ function Sidebar() {
 				name: roomName
 			})
 		}
+		//console.log(user);
 	}
 
 	return (
@@ -69,18 +63,31 @@ function Sidebar() {
 			</div>
 				</div>
 
-
+			{/*Input field for the search*/}
 			<div className="sidebar_search">
 				<div className="sidebar_search_container">
 					<SearchIcon />
-				<input type="text" placeholder="Search" />
+				<input type="text" placeholder="Search" onChange={event=> setName(event.target.value)} />
 				</div>
 			</div>
 
-{/* Map through all the sidebar_chats */}
+{/* Map through all the sidebar_chats and display according to filter */}
 			<div className="sidebar_chats">
 				<SidebarChat addNewChat/>
-				{rooms.map(renderItems)}
+				{rooms.filter((val)=>{
+					if(Name===""){
+					return val
+				}else if(val.data.name.toLocaleLowerCase().includes(Name.toLowerCase())){
+						return val
+					}
+					else return null;
+				}).map((room)=>{
+					return <SidebarChat
+								id={room.id}
+								key={room.id}
+								name={room.data.name}
+							/>
+				})}
 			</div>
 		</div>
 	)
