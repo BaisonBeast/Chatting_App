@@ -3,6 +3,7 @@ import "./css/SidebarChat.css"
 import { Avatar} from '@material-ui/core';
 import db from "./firebase";
 import {Link} from "react-router-dom";
+import firebase from "firebase";
 
 function SidebarChat({id, name, addNewChat}) {
 
@@ -25,8 +26,14 @@ function SidebarChat({id, name, addNewChat}) {
 
 	}, [id])
 
-	function deleteItem(){
-		db.collection("rooms").doc(id).delete();
+	function deleteItem(event){
+		var cityRef = db.collection('rooms').doc(id);
+		var removeCapital = cityRef.update({
+		    capital: firebase.firestore.FieldValue.delete()
+		});
+		db.collection('rooms').doc(id).delete();
+		{window.location.href='/'}
+
 	}
 
 	return !addNewChat? (
@@ -37,12 +44,13 @@ function SidebarChat({id, name, addNewChat}) {
 					<h2>{name}</h2>
 					<h3>{messages[0]?.message}</h3>
 				</div>
-				<a href="#" class="myButton" onClick={deleteItem}>Delete</a>
+				<a href="#" class="btn" onClick={deleteItem}>Delete</a>
 			</div>
 		</Link>
 	) : (
-		null
-	)
+		
+			<Link to="/" />
+		)
 }
 
 export default SidebarChat

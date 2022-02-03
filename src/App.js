@@ -10,18 +10,16 @@ function App() {
 	const [{user}, dispatch] = useStateValue();
   return (
     <div className="app">
+  {/*If user present then show chats*/}
     {!user ?
     	(<Login />)
     	:( <div className="app_body">
-      	<Router>
-      	<Sidebar />
+      	<Router>      	
+          <Sidebar />
            <Switch>
 					 <Route path="/rooms/:roomid">
 						 <Chat />
 					 </Route>
-           		<Route path="/">
-           			<Chat />
-           		</Route>
            </Switch>
       	</Router>
       </div>

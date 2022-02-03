@@ -1,10 +1,11 @@
 export const initialState = {
-  user: null
+  user:  localStorage.user?JSON.parse(localStorage.user): null
 };
 
 // Selector
 export const actionTypes = {
   SET_USER: "SET_USER",
+  Logout_USER: "Logout_USER"
 };
 
 const reducer = (state, action) => {
@@ -14,7 +15,12 @@ const reducer = (state, action) => {
       case "SET_USER":
       return {
         ...state,
-        user:action.user
+        user:action.user 
+      }
+
+      case "Logout_USER":
+      return {
+        user:action.user 
       }
 
       default:

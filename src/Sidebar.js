@@ -8,6 +8,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import db from "./firebase";
 import {useStateValue} from "./StateProvider";
+import firebase from "firebase";
+import {actionTypes} from "./Reducer";
 
 function Sidebar() {
 
@@ -31,14 +33,33 @@ function Sidebar() {
 
 /* Creating a new chatSidebar  */
   function createChat(){
-		const roomName=prompt("Enter the name ")
-		if(roomName)
+		const roomName=prompt("Enter the name ");
+		const roomName_length=roomName.length;
+
+		if(roomName!=null && roomName_length<15)
 		{
 			db.collection("rooms").add({
 				name: roomName
 			})
+		}else{
+			alert("Name should be of 15 characters");
 		}
-		//console.log(user);
+	}
+
+	{/*Logout handle*/}
+	function handleLogout(){
+		localStorage.removeItem("user");
+
+		firebase.auth().signOut().then(() => {
+			dispatch({
+			type: actionTypes.Logout_USER,
+			user:null,
+		})
+			console.log("Logout success");
+		}).catch((error) => {
+			console.log(error);
+		});
+
 	}
 
 	return (
@@ -57,9 +78,13 @@ function Sidebar() {
   				<IconButton  onClick={createChat}>
   					<ChatIcon />
 					</IconButton>
-					<IconButton>
-					  <MoreVertIcon />
-					</IconButton>
+				
+					<div className="dropdown">
+					<MoreVertIcon className="dropbtn"/>
+					  <div className="dropdown-content">
+					    <p onClick={handleLogout}>Logout</p>
+				  	</div>
+					</div> 
 			</div>
 				</div>
 
