@@ -10,6 +10,7 @@
 .sidebarChat_info{
 	margin-left: 15px;
 	text-decoration: none !important;
+    font-family: helvetica;
 }
 a{
 	text-decoration: none !important;
@@ -24,4 +25,42 @@ a{
 .sidebarChat_info > h3{
 	font-size: 13px;
 	color: #393e46;
+}
+
+:root{
+    --yellow:#FFFDA2;
+}
+
+.btn{
+    display: inline-block;
+    right: 65%;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: .5rem;
+    color:#333;
+    background:var(--yellow);
+    position: absolute;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    overflow: hidden;
+    z-index: 0;
+}
+
+.btn::before{
+    content: '';
+    position: absolute;
+    top:0; left:0;
+    height: 100%;
+    width:100%;
+    clip-path: polygon(0 0, 100% 0, 10% 25%, 0 100%);
+    z-index: -1;
+    background:#444;
+    transition: .3s cubic-bezier(.38,1.15,.7,1.12);
+}
+
+.btn:hover:before{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.btn:hover{
+    color:var(--yellow);
 }

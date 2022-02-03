@@ -30,7 +30,6 @@ function Chat() {
 			db.collection("rooms").doc(roomid)
 			.onSnapshot((snapshot)=>setRoomName(snapshot.data()?.name));
 
-
 			db.collection("rooms")
 			.doc(roomid)
 			.collection("messages")
